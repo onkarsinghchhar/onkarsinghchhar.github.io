@@ -1,12 +1,773 @@
 <!DOCTYPE html>
-<html>
-<head>
-<title>Page Title</title>
-</head>
-<body>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Smart Learning Platform UI</title>
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+      integrity="sha512-SnH5WK+bZxgPHs44uWix+LLJAJ9/2PkPKZ5QiAj6Ta86w+fsb2TkR4j8NTSRyMA2Fd33n5dQ8lWUE00s/"
+      crossorigin="anonymous"
+      referrerpolicy="no-referrer"
+    />
+    <style>
+      :root {
+        --primary: #2563eb;
+        --primary-dark: #1e40af;
+        --accent: #0ea5e9;
+        --bg: #f3f6fb;
+        --card: #ffffff;
+        --text: #0f172a;
+        --muted: #64748b;
+        --border: #dbe4f1;
+        --success: #22c55e;
+        --shadow: 0 10px 30px rgba(15, 23, 42, 0.08);
+      }
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
 
-</body>
+      html {
+        scroll-behavior: smooth;
+      }
+
+      body {
+        font-family: "Inter", "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+        background: var(--bg);
+        color: var(--text);
+        line-height: 1.5;
+      }
+
+      a {
+        text-decoration: none;
+        color: inherit;
+      }
+
+      .container {
+        width: min(1120px, 92%);
+        margin: 0 auto;
+      }
+
+      .top-nav {
+        position: sticky;
+        top: 0;
+        z-index: 100;
+        backdrop-filter: blur(6px);
+        background: rgba(255, 255, 255, 0.92);
+        border-bottom: 1px solid var(--border);
+      }
+
+      .nav-inner {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.95rem 0;
+        gap: 1rem;
+      }
+
+      .brand {
+        display: flex;
+        align-items: center;
+        gap: 0.6rem;
+        font-weight: 700;
+        color: var(--primary-dark);
+      }
+
+      .brand i {
+        color: var(--primary);
+        font-size: 1.2rem;
+      }
+
+      .nav-links {
+        display: flex;
+        gap: 0.85rem;
+        flex-wrap: wrap;
+      }
+
+      .nav-links a {
+        color: var(--muted);
+        font-weight: 500;
+        font-size: 0.95rem;
+        padding: 0.35rem 0.65rem;
+        border-radius: 999px;
+        transition: all 0.25s ease;
+      }
+
+      .nav-links a:hover {
+        color: var(--primary-dark);
+        background: #e7efff;
+      }
+
+      section {
+        padding: 4.2rem 0;
+      }
+
+      .section-heading {
+        margin-bottom: 1.4rem;
+      }
+
+      .section-heading h2 {
+        font-size: clamp(1.5rem, 1.2rem + 1.2vw, 2.15rem);
+      }
+
+      .section-heading p {
+        color: var(--muted);
+      }
+
+      .hero {
+        display: grid;
+        grid-template-columns: 1.15fr 1fr;
+        gap: 1.4rem;
+        align-items: center;
+      }
+
+      .hero-copy h1 {
+        font-size: clamp(2rem, 1.4rem + 2.2vw, 3rem);
+        line-height: 1.2;
+      }
+
+      .hero-copy h1 span {
+        color: var(--primary);
+      }
+
+      .hero-copy p {
+        color: var(--muted);
+        margin: 1rem 0 1.4rem;
+        max-width: 56ch;
+      }
+
+      .actions {
+        display: flex;
+        gap: 0.8rem;
+        flex-wrap: wrap;
+      }
+
+      .btn {
+        border: 0;
+        border-radius: 999px;
+        padding: 0.75rem 1.2rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: all 0.25s ease;
+      }
+
+      .btn-primary {
+        background: var(--primary);
+        color: #fff;
+      }
+
+      .btn-primary:hover {
+        background: var(--primary-dark);
+        transform: translateY(-2px);
+      }
+
+      .btn-secondary {
+        background: #e7efff;
+        color: var(--primary-dark);
+      }
+
+      .btn-secondary:hover {
+        background: #d7e4ff;
+        transform: translateY(-2px);
+      }
+
+      .hero-card {
+        background: linear-gradient(165deg, #1d4ed8, #2563eb 55%, #38bdf8);
+        color: #fff;
+        border-radius: 1.2rem;
+        box-shadow: var(--shadow);
+        padding: 1.3rem;
+      }
+
+      .hero-stat-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 0.8rem;
+        margin-top: 1rem;
+      }
+
+      .hero-stat {
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 0.8rem;
+        padding: 0.75rem;
+      }
+
+      .grid {
+        display: grid;
+        gap: 1rem;
+      }
+
+      .cards-3 {
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+      }
+
+      .cards-4 {
+        grid-template-columns: repeat(4, minmax(0, 1fr));
+      }
+
+      .card {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        padding: 1rem;
+        box-shadow: var(--shadow);
+        transition: all 0.25s ease;
+      }
+
+      .card:hover {
+        transform: translateY(-5px);
+      }
+
+      .course-card h3,
+      .testimonial h3 {
+        margin-bottom: 0.4rem;
+      }
+
+      .course-card p,
+      .testimonial p,
+      .category p {
+        color: var(--muted);
+        margin-bottom: 0.8rem;
+      }
+
+      .chip {
+        display: inline-flex;
+        align-items: center;
+        gap: 0.45rem;
+        background: #eff6ff;
+        color: var(--primary-dark);
+        border-radius: 999px;
+        padding: 0.4rem 0.7rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+      }
+
+      .category {
+        text-align: center;
+      }
+
+      .category i {
+        font-size: 1.25rem;
+        color: var(--primary);
+        margin-bottom: 0.45rem;
+      }
+
+      .testimonial .author {
+        color: var(--primary-dark);
+        font-weight: 600;
+      }
+
+      .footer {
+        padding: 2rem 0;
+        border-top: 1px solid var(--border);
+        background: #eef3fc;
+      }
+
+      .footer-grid {
+        display: grid;
+        gap: 1rem;
+        grid-template-columns: 1.2fr 1fr 1fr;
+      }
+
+      .footer p,
+      .footer li {
+        color: var(--muted);
+        list-style: none;
+        margin-top: 0.35rem;
+      }
+
+      .dashboard-layout {
+        display: grid;
+        grid-template-columns: 240px 1fr;
+        gap: 1rem;
+      }
+
+      .sidebar {
+        background: var(--card);
+        border: 1px solid var(--border);
+        border-radius: 1rem;
+        box-shadow: var(--shadow);
+        padding: 0.8rem;
+      }
+
+      .sidebar h3 {
+        margin-bottom: 0.75rem;
+      }
+
+      .sidebar a {
+        display: flex;
+        align-items: center;
+        gap: 0.65rem;
+        padding: 0.7rem;
+        margin-bottom: 0.4rem;
+        border-radius: 0.7rem;
+        color: var(--muted);
+        transition: all 0.2s ease;
+      }
+
+      .sidebar a:hover,
+      .sidebar a.active {
+        background: #e7efff;
+        color: var(--primary-dark);
+      }
+
+      .dashboard-content .grid {
+        margin-bottom: 1rem;
+      }
+
+      .progress-label {
+        display: flex;
+        justify-content: space-between;
+        margin-bottom: 0.45rem;
+        font-size: 0.9rem;
+        color: var(--muted);
+      }
+
+      .progress-bar {
+        width: 100%;
+        height: 9px;
+        background: #e2e8f0;
+        border-radius: 999px;
+        overflow: hidden;
+      }
+
+      .progress-bar span {
+        display: block;
+        height: 100%;
+        background: linear-gradient(90deg, var(--primary), var(--accent));
+      }
+
+      .recent-list li,
+      .content-list li {
+        list-style: none;
+        display: flex;
+        justify-content: space-between;
+        padding: 0.6rem 0;
+        border-bottom: 1px dashed var(--border);
+        color: var(--muted);
+      }
+
+      .course-layout {
+        display: grid;
+        grid-template-columns: 2fr 1fr;
+        gap: 1rem;
+      }
+
+      .video-placeholder {
+        width: 100%;
+        aspect-ratio: 16 / 9;
+        border-radius: 1rem;
+        display: grid;
+        place-items: center;
+        color: #fff;
+        background: radial-gradient(circle at top left, #1d4ed8, #0f172a);
+        margin-bottom: 1rem;
+      }
+
+      .rating {
+        color: #f59e0b;
+        margin: 0.45rem 0;
+      }
+
+      .auth-wrap {
+        min-height: 70vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1rem;
+      }
+
+      .auth-card {
+        background: var(--card);
+        border-radius: 1rem;
+        border: 1px solid var(--border);
+        box-shadow: var(--shadow);
+        padding: 1.4rem;
+        max-width: 460px;
+        width: 100%;
+        margin: auto;
+      }
+
+      .auth-card h3 {
+        margin-bottom: 1rem;
+      }
+
+      .input-group {
+        margin-bottom: 0.9rem;
+      }
+
+      label {
+        display: block;
+        margin-bottom: 0.3rem;
+        font-size: 0.9rem;
+        color: #334155;
+      }
+
+      input {
+        width: 100%;
+        padding: 0.68rem;
+        border: 1px solid #d4deec;
+        border-radius: 0.7rem;
+        outline: none;
+        transition: border-color 0.2s ease, box-shadow 0.2s ease;
+      }
+
+      input:focus {
+        border-color: var(--primary);
+        box-shadow: 0 0 0 3px rgba(37, 99, 235, 0.16);
+      }
+
+      @media (max-width: 980px) {
+        .cards-3,
+        .cards-4 {
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+
+        .hero,
+        .dashboard-layout,
+        .course-layout,
+        .auth-wrap,
+        .footer-grid {
+          grid-template-columns: 1fr;
+        }
+
+        .sidebar {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 0.45rem;
+        }
+
+        .sidebar a {
+          margin: 0;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .cards-3,
+        .cards-4,
+        .hero-stat-grid,
+        .sidebar {
+          grid-template-columns: 1fr;
+        }
+
+        section {
+          padding: 3.2rem 0;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <header class="top-nav">
+      <div class="container nav-inner">
+        <a href="#home" class="brand"><i class="fa-solid fa-graduation-cap"></i>SmartLearn</a>
+        <nav class="nav-links">
+          <a href="#home">Home</a>
+          <a href="#dashboard">Dashboard</a>
+          <a href="#course-page">Course</a>
+          <a href="#auth">Login/Register</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section id="home">
+        <div class="container">
+          <div class="hero">
+            <div class="hero-copy">
+              <h1>Learn Anytime, <span>Anywhere</span></h1>
+              <p>
+                Build future-ready skills with interactive lessons, hands-on projects, and personalized AI guidance in a modern smart learning environment.
+              </p>
+              <div class="actions">
+                <button class="btn btn-primary">Get Started</button>
+                <button class="btn btn-secondary">Browse Courses</button>
+              </div>
+            </div>
+            <div class="hero-card">
+              <h3>Learning Insights</h3>
+              <p>Your weekly learning activity is up by 18% 🚀</p>
+              <div class="hero-stat-grid">
+                <div class="hero-stat">
+                  <strong>25K+</strong>
+                  <p>Learners</p>
+                </div>
+                <div class="hero-stat">
+                  <strong>320+</strong>
+                  <p>Courses</p>
+                </div>
+                <div class="hero-stat">
+                  <strong>92%</strong>
+                  <p>Completion Rate</p>
+                </div>
+                <div class="hero-stat">
+                  <strong>4.8/5</strong>
+                  <p>Avg. Rating</p>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          <div class="section-heading" style="margin-top: 2.1rem">
+            <h2>Featured Courses</h2>
+            <p>Top programs chosen by learners this month.</p>
+          </div>
+          <div class="grid cards-3">
+            <article class="card course-card">
+              <span class="chip"><i class="fa-solid fa-code"></i>Programming</span>
+              <h3>Full Stack Web Development</h3>
+              <p>Master modern front-end and backend frameworks with real-world projects.</p>
+              <button class="btn btn-primary">Enroll Now</button>
+            </article>
+            <article class="card course-card">
+              <span class="chip"><i class="fa-solid fa-robot"></i>AI</span>
+              <h3>Applied Machine Learning</h3>
+              <p>Learn model building, evaluation, and deployment for production-ready AI systems.</p>
+              <button class="btn btn-primary">Enroll Now</button>
+            </article>
+            <article class="card course-card">
+              <span class="chip"><i class="fa-solid fa-briefcase"></i>Business</span>
+              <h3>Digital Business Strategy</h3>
+              <p>Develop strategic thinking and leadership skills for growth in digital markets.</p>
+              <button class="btn btn-primary">Enroll Now</button>
+            </article>
+          </div>
+
+          <div class="section-heading" style="margin-top: 2.1rem">
+            <h2>Categories</h2>
+            <p>Explore areas aligned to your career goals.</p>
+          </div>
+          <div class="grid cards-4">
+            <div class="card category">
+              <i class="fa-solid fa-microchip"></i>
+              <h3>Technology</h3>
+              <p>Cloud, DevOps, and emerging tech tracks.</p>
+            </div>
+            <div class="card category">
+              <i class="fa-solid fa-chart-line"></i>
+              <h3>Business</h3>
+              <p>Management, finance, and communication skills.</p>
+            </div>
+            <div class="card category">
+              <i class="fa-solid fa-brain"></i>
+              <h3>AI</h3>
+              <p>ML, deep learning, and prompt engineering.</p>
+            </div>
+            <div class="card category">
+              <i class="fa-solid fa-laptop-code"></i>
+              <h3>Programming</h3>
+              <p>Frontend, backend, and system design.</p>
+            </div>
+          </div>
+
+          <div class="section-heading" style="margin-top: 2.1rem">
+            <h2>Testimonials</h2>
+            <p>What learners say about SmartLearn.</p>
+          </div>
+          <div class="grid cards-3">
+            <article class="card testimonial">
+              <h3>“Clear and practical content”</h3>
+              <p>“The structured lessons and projects helped me transition into software development within 6 months.”</p>
+              <span class="author">— Aanya Patel</span>
+            </article>
+            <article class="card testimonial">
+              <h3>“Excellent dashboard and tracking”</h3>
+              <p>“I love how quickly I can see my progress, pending lessons, and tailored AI recommendations.”</p>
+              <span class="author">— Daniel Rivera</span>
+            </article>
+            <article class="card testimonial">
+              <h3>“Professional and intuitive UI”</h3>
+              <p>“The platform feels polished and easy to navigate on both mobile and desktop.”</p>
+              <span class="author">— Nisha Verma</span>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      <section id="dashboard">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Student Dashboard</h2>
+            <p>A focused workspace to monitor progress and continue learning.</p>
+          </div>
+          <div class="dashboard-layout">
+            <aside class="sidebar">
+              <h3>Navigation</h3>
+              <a class="active" href="#"><i class="fa-solid fa-gauge"></i>Dashboard</a>
+              <a href="#"><i class="fa-solid fa-book-open"></i>Courses</a>
+              <a href="#"><i class="fa-solid fa-chart-pie"></i>Progress</a>
+              <a href="#"><i class="fa-solid fa-circle-question"></i>Quiz</a>
+              <a href="#"><i class="fa-solid fa-user"></i>Profile</a>
+            </aside>
+
+            <div class="dashboard-content">
+              <div class="grid cards-3">
+                <article class="card">
+                  <h3>React Mastery</h3>
+                  <div class="progress-label"><span>Progress</span><span>72%</span></div>
+                  <div class="progress-bar"><span style="width: 72%"></span></div>
+                </article>
+                <article class="card">
+                  <h3>Data Analytics</h3>
+                  <div class="progress-label"><span>Progress</span><span>48%</span></div>
+                  <div class="progress-bar"><span style="width: 48%"></span></div>
+                </article>
+                <article class="card">
+                  <h3>AI Fundamentals</h3>
+                  <div class="progress-label"><span>Progress</span><span>85%</span></div>
+                  <div class="progress-bar"><span style="width: 85%"></span></div>
+                </article>
+              </div>
+
+              <div class="grid cards-2" style="grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 1rem">
+                <article class="card">
+                  <h3>Recently Accessed Courses</h3>
+                  <ul class="recent-list">
+                    <li><span>Node.js API Development</span><span>2h ago</span></li>
+                    <li><span>Advanced CSS Layouts</span><span>Yesterday</span></li>
+                    <li><span>Python for Data Science</span><span>2 days ago</span></li>
+                  </ul>
+                </article>
+                <article class="card">
+                  <h3>AI-Based Recommendations</h3>
+                  <ul class="recent-list">
+                    <li><span>Generative AI for Developers</span><span>New</span></li>
+                    <li><span>System Design Essentials</span><span>Trending</span></li>
+                    <li><span>Product Thinking for Engineers</span><span>Recommended</span></li>
+                  </ul>
+                </article>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="course-page">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Course Page</h2>
+            <p>Structured lessons, clear content flow, and learner feedback.</p>
+          </div>
+          <div class="course-layout">
+            <div>
+              <article class="card">
+                <h3>Advanced JavaScript & Modern Frameworks</h3>
+                <p><strong>Instructor:</strong> Sarah Thompson</p>
+                <div class="video-placeholder">
+                  <div><i class="fa-solid fa-circle-play" style="font-size: 2rem"></i><p>Video Player Area</p></div>
+                </div>
+                <button class="btn btn-primary">Enroll Now</button>
+              </article>
+            </div>
+
+            <div>
+              <article class="card" style="margin-bottom: 1rem">
+                <h3>Course Content</h3>
+                <ul class="content-list">
+                  <li><span>Lesson 1: ES6+ Essentials</span><span>22m</span></li>
+                  <li><span>Lesson 2: Async Patterns</span><span>28m</span></li>
+                  <li><span>Lesson 3: React Architecture</span><span>31m</span></li>
+                  <li><span>Lesson 4: State Management</span><span>35m</span></li>
+                  <li><span>Lesson 5: Performance Tuning</span><span>26m</span></li>
+                </ul>
+              </article>
+              <article class="card">
+                <h3>Ratings & Reviews</h3>
+                <p class="rating">★★★★★ 4.8 (2,130 ratings)</p>
+                <p>“Very practical and up-to-date course content with excellent explanations.”</p>
+              </article>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="auth">
+        <div class="container">
+          <div class="section-heading">
+            <h2>Login & Registration</h2>
+            <p>Clean and minimal authentication cards with responsive layout.</p>
+          </div>
+
+          <div class="auth-wrap">
+            <article class="auth-card">
+              <h3>Login</h3>
+              <form>
+                <div class="input-group">
+                  <label for="login-email">Email Address</label>
+                  <input id="login-email" type="email" placeholder="you@example.com" />
+                </div>
+                <div class="input-group">
+                  <label for="login-password">Password</label>
+                  <input id="login-password" type="password" placeholder="••••••••" />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Sign In</button>
+              </form>
+            </article>
+
+            <article class="auth-card">
+              <h3>Create Account</h3>
+              <form>
+                <div class="input-group">
+                  <label for="register-name">Full Name</label>
+                  <input id="register-name" type="text" placeholder="Your name" />
+                </div>
+                <div class="input-group">
+                  <label for="register-email">Email Address</label>
+                  <input id="register-email" type="email" placeholder="you@example.com" />
+                </div>
+                <div class="input-group">
+                  <label for="register-password">Password</label>
+                  <input id="register-password" type="password" placeholder="Create a password" />
+                </div>
+                <button type="submit" class="btn btn-primary" style="width: 100%">Register</button>
+              </form>
+            </article>
+          </div>
+        </div>
+      </section>
+    </main>
+
+    <footer class="footer">
+      <div class="container footer-grid">
+        <div>
+          <h3>SmartLearn</h3>
+          <p>Modern e-learning for students, professionals, and lifelong learners.</p>
+        </div>
+        <div>
+          <h4>Quick Links</h4>
+          <ul>
+            <li><a href="#home">Home</a></li>
+            <li><a href="#dashboard">Dashboard</a></li>
+            <li><a href="#course-page">Courses</a></li>
+          </ul>
+        </div>
+        <div>
+          <h4>Contact</h4>
+          <ul>
+            <li>Email: support@smartlearn.com</li>
+            <li>Phone: +1 (555) 012-9011</li>
+            <li>Address: 300 Learning Ave, New York, NY</li>
+          </ul>
+        </div>
+      </div>
+    </footer>
+
+    <script>
+      document.querySelectorAll('form').forEach((form) => {
+        form.addEventListener('submit', (e) => {
+          e.preventDefault();
+          const button = form.querySelector('button[type="submit"]');
+          const original = button.textContent;
+          button.textContent = 'Submitted ✓';
+          button.style.background = '#16a34a';
+          setTimeout(() => {
+            button.textContent = original;
+            button.style.background = '';
+          }, 1200);
+        });
+      });
+    </script>
+  </body>
 </html>
