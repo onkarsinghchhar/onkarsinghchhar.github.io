@@ -1,12 +1,151 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<title>Page Title</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ElevateLearn | Modern E-Learning Platform</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
 </head>
 <body>
+  <header class="header">
+    <nav class="nav container">
+      <a class="logo" href="#">Elevate<span>Learn</span></a>
+      <button class="menu-toggle" id="menuToggle" aria-label="Toggle menu">☰</button>
+      <ul class="nav-links" id="navLinks">
+        <li><a href="#courses">Courses</a></li>
+        <li><a href="#categories">Categories</a></li>
+        <li><a href="#testimonials">Testimonials</a></li>
+        <li><a href="#auth">Login/Register</a></li>
+      </ul>
+    </nav>
+    <section class="hero container reveal">
+      <div class="hero-copy">
+        <p class="tag">#1 Skill Growth Platform</p>
+        <h1>Learn In-Demand Skills with a Clean, Modern Experience.</h1>
+        <p>Explore top-rated courses, discover categories, and level up your career with an elegant e-learning journey.</p>
+        <div class="hero-actions">
+          <a href="#courses" class="btn btn-primary">Explore Courses</a>
+          <a href="#auth" class="btn btn-ghost">Get Started</a>
+        </div>
+      </div>
+      <div class="hero-card">
+        <h3>Find Your Next Course</h3>
+        <div class="search-bar">
+          <input id="courseSearch" type="text" placeholder="Search courses (e.g. UI Design, Python)" />
+          <button id="searchButton">Search</button>
+        </div>
+      </div>
+    </section>
+  </header>
 
-<h1>This is a Heading</h1>
-<p>This is a paragraph.</p>
+  <main>
+    <section id="categories" class="section container reveal">
+      <div class="section-head">
+        <h2>Course Categories</h2>
+        <p>Pick a path that matches your goals.</p>
+      </div>
+      <div class="category-grid">
+        <article class="card category-card">💻 Web Development</article>
+        <article class="card category-card">📊 Data Science</article>
+        <article class="card category-card">🎨 UI/UX Design</article>
+        <article class="card category-card">🤖 AI & Machine Learning</article>
+        <article class="card category-card">📈 Digital Marketing</article>
+        <article class="card category-card">🧠 Personal Growth</article>
+      </div>
+    </section>
 
+    <section id="courses" class="section container reveal">
+      <div class="section-head">
+        <h2>Featured Courses</h2>
+        <p>Handpicked programs from expert instructors.</p>
+      </div>
+      <div class="course-grid" id="courseGrid">
+        <article class="card course-card" data-title="Frontend Mastery with HTML CSS JavaScript">
+          <h3>Frontend Mastery</h3>
+          <p>Build modern responsive websites from scratch.</p>
+          <span>⭐ 4.8 • 12 Weeks</span>
+        </article>
+        <article class="card course-card" data-title="Python for Data Analytics">
+          <h3>Python for Data Analytics</h3>
+          <p>Analyze data and visualize insights professionally.</p>
+          <span>⭐ 4.9 • 10 Weeks</span>
+        </article>
+        <article class="card course-card" data-title="UI UX Design Systems">
+          <h3>UI/UX Design Systems</h3>
+          <p>Create sleek interfaces and scalable design systems.</p>
+          <span>⭐ 4.7 • 8 Weeks</span>
+        </article>
+        <article class="card course-card" data-title="Machine Learning Foundations">
+          <h3>Machine Learning Foundations</h3>
+          <p>Learn ML concepts and practical model development.</p>
+          <span>⭐ 4.8 • 14 Weeks</span>
+        </article>
+      </div>
+    </section>
+
+    <section id="testimonials" class="section container reveal">
+      <div class="section-head">
+        <h2>What Learners Say</h2>
+        <p>Real feedback from our students.</p>
+      </div>
+      <div class="testimonial-grid">
+        <article class="card testimonial-card">
+          <p>“The interface is so clean and the courses are practical. I landed a new job in 3 months!”</p>
+          <h4>— Priya S., Frontend Developer</h4>
+        </article>
+        <article class="card testimonial-card">
+          <p>“The structured curriculum and modern design made learning enjoyable every day.”</p>
+          <h4>— Michael R., Data Analyst</h4>
+        </article>
+        <article class="card testimonial-card">
+          <p>“Best e-learning experience I’ve used. Smooth, responsive, and content-rich.”</p>
+          <h4>— Amina K., Product Designer</h4>
+        </article>
+      </div>
+    </section>
+
+    <section id="auth" class="section container reveal">
+      <div class="section-head">
+        <h2>Login / Register</h2>
+        <p>UI-only design for authentication flow.</p>
+      </div>
+      <div class="auth-layout">
+        <form class="card auth-card">
+          <h3>Login</h3>
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com" />
+          <label>Password</label>
+          <input type="password" placeholder="••••••••" />
+          <button type="button" class="btn btn-primary">Login</button>
+        </form>
+        <form class="card auth-card">
+          <h3>Register</h3>
+          <label>Full Name</label>
+          <input type="text" placeholder="Your name" />
+          <label>Email</label>
+          <input type="email" placeholder="you@example.com" />
+          <label>Password</label>
+          <input type="password" placeholder="Create password" />
+          <button type="button" class="btn btn-primary">Create Account</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-content">
+      <p>© 2026 ElevateLearn. All rights reserved.</p>
+      <div class="social-links">
+        <a href="#" aria-label="LinkedIn">LinkedIn</a>
+        <a href="#" aria-label="Twitter">Twitter</a>
+        <a href="#" aria-label="YouTube">YouTube</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
